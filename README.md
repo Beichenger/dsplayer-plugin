@@ -2,7 +2,7 @@
 
 DsPlayer 插件官方市场仓库：`market.json` 为市场索引（在线安装入口），`packages/` 存放插件包，`icons/` 存放条目图标。
 
-## 当前收录（23 个条目 = 环境 16 + 应用 7）
+## 当前收录（29 个条目 = 环境 16 + 应用 13）
 
 条目带 `category` 字段（2026-09-20 起）：`env`=环境（引擎/运行时，给壳子供能力，默认归类）；`app`=应用（面向完整使用场景：整合包、直播源包、服务包）。市场内按类别过滤，默认展示「环境」。
 
@@ -41,6 +41,11 @@ DsPlayer 插件官方市场仓库：`market.json` 为市场索引（在线安装
 | catLib 引擎库包 | `catlib` | 1.0.0 | **source**（源码包；引擎库；platforms=android+win32） | `packages/catlib-1.0.0.zip` |
 | IDM+ 下载器（1DM+） | `idmplus` | 18.2 | **apk**（系统安装；Release 分发；platforms=android） | `idmplus-18.2-CN.apk` |
 | MT管理器 | `mtmanager` | 2.14.5 | **apk**（系统安装；platforms=android） | `packages/mtmanager-2.14.5.apk` |
+| AI 聚合网关 | `aigw` | 2.2.0 | **apk**（系统安装；本地 OpenAI 兼容聚合网关；platforms=android） | `packages/aigw-2.2.0.apk` |
+| 小浣熊 | `raccoon` | 1.29 | **apk**（系统安装；本地 OpenAI 兼容 API 网关；platforms=android） | `packages/raccoon-1.29.apk` |
+| 智谱清言网关 | `zhipu-gw` | 1.5.10 | **apk**（系统安装；智谱清言本地网关；platforms=android） | `packages/zhipu-gw-1.5.10.apk` |
+| Go Music DL 音乐下载 | `go-music-dl` | 1.1.1 | import（zip；binary 运行时服务；platforms=android） | `packages/go-music-dl-1.1.1.zip` |
+| OpenList 网盘服务 | `OpenList` | 1.3.0 | import（zip；binary 运行时服务；platforms=android） | `packages/OpenList-1.3.0.zip` |
 
 ### 引擎类条目版本要点
 

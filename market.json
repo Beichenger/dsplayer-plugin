@@ -2,7 +2,7 @@
    "logo": "icons/market.png",
    "name": "DsPlayer 官方插件市场",
    "desc": "官方维护的插件分发索引（docs/plugin/PLUGIN-MARKET-DESIGN.md §二 schema）",
-   "updatedAt": "2026-10-11",
+   "updatedAt": "2026-10-12",
    "plugins": [
       {
          "id": "mediaProxy",
@@ -509,6 +509,114 @@
          ],
          "md5": "2503056464d8651e15e04ef6c58eabd1",
          "changelog": "首录：MT 管理器 2.14.5（versionCode 24011893，versionName 2.14.5-clone 克隆版，包名 bin.mt.plus.canary）。全 ABI（arm64-v8a/armeabi-v7a/x86/x86_64），包体 26.5MB 走 packages/ 常规分发。",
+         "platforms": [
+            "android"
+         ]
+      },
+      {
+         "id": "aigw",
+         "name": "AI 聚合网关",
+         "author": "custom",
+         "desc": "本地 AI 聚合网关（独立桌面应用）：在本机监听端口，把多家 AI 服务聚合成 OpenAI 兼容 API，DsPlayer AI 助手（agent 插件）或局域网内其他应用填入其接口地址即可使用；前台服务保活，锁屏后客户端仍能调用。与 DsPlayer 无进程耦合，纯第三方应用直装（声明 pkg 包名，可感知系统侧卸载）。",
+         "version": "2.2.0",
+         "type": "apk",
+         "category": "app",
+         "pkg": "dev.aigw.app",
+         "size": 1608166,
+         "url": "packages/aigw-2.2.0.apk",
+         "icon": "icons/aigw.png",
+         "tags": [
+            "AI",
+            "应用"
+         ],
+         "md5": "c114127a9c0798fcf313e739f238a5e4",
+         "changelog": "首录：AI 聚合网关 2.2.0（versionCode 121，包名 dev.aigw.app）。本地 OpenAI 兼容聚合网关，SPECIAL_USE FGS 后台保活。全 ABI（arm64-v8a/armeabi-v7a/x86/x86_64），包体 1.6MB 走 packages/ 常规分发。",
+         "platforms": [
+            "android"
+         ]
+      },
+      {
+         "id": "raccoon",
+         "name": "小浣熊",
+         "author": "custom",
+         "desc": "本地 OpenAI 兼容 API 网关（独立桌面应用）：绑定 127.0.0.1 监听端口，把外部 AI 能力以 OpenAI 兼容接口暴露给本机/局域网应用统一接入。与 DsPlayer 无进程耦合，纯第三方应用直装（声明 pkg 包名，可感知系统侧卸载）。",
+         "version": "1.29",
+         "type": "apk",
+         "category": "app",
+         "pkg": "dev.raccoon2api",
+         "size": 733693,
+         "url": "packages/raccoon-1.29.apk",
+         "icon": "icons/raccoon.png",
+         "tags": [
+            "AI",
+            "应用"
+         ],
+         "md5": "c3453ae5be68595913a688db077d67af",
+         "changelog": "首录：小浣熊 1.29（versionCode 30，包名 dev.raccoon2api）。本地 OpenAI 兼容 API 网关（绑定 127.0.0.1），SPECIAL_USE FGS 后台保活。包体 0.7MB 走 packages/ 常规分发。",
+         "platforms": [
+            "android"
+         ]
+      },
+      {
+         "id": "zhipu-gw",
+         "name": "智谱清言网关",
+         "author": "custom",
+         "desc": "智谱清言本地网关（独立桌面应用）：在本机监听端口并转发请求到智谱清言，把智谱清言能力以 OpenAI 兼容 API 暴露给局域网内应用（DsPlayer AI 助手等）。与 DsPlayer 无进程耦合，纯第三方应用直装（声明 pkg 包名，可感知系统侧卸载）。",
+         "version": "1.5.10",
+         "type": "apk",
+         "category": "app",
+         "pkg": "dev.agentmore2api",
+         "size": 190022,
+         "url": "packages/zhipu-gw-1.5.10.apk",
+         "icon": "icons/zhipu-gw.png",
+         "tags": [
+            "AI",
+            "应用"
+         ],
+         "md5": "ee30d8a1ffce5bd87666f4c57dd278be",
+         "changelog": "首录：智谱清言网关 1.5.10（versionCode 17，包名 dev.agentmore2api）。本地 OpenAI 兼容网关：本机监听端口并转发请求到智谱清言。包体 0.2MB 走 packages/ 常规分发。",
+         "platforms": [
+            "android"
+         ]
+      },
+      {
+         "id": "go-music-dl",
+         "name": "Go Music DL 音乐下载",
+         "author": "guohuiyuan",
+         "desc": "音乐搜索、试听和下载服务（Go 单文件二进制，runtime=binary 以子进程方式由宿主拉起）：默认参数 web --port 37777 --no-browser，启动后浏览器访问 http://127.0.0.1:37777 搜索/试听/下载音乐；健康检查 /music/healthz，内置国内 DNS 白名单修复 Android 环境 DNS 解析。上游 github.com/guohuiyuan/go-music-dl。",
+         "version": "1.1.1",
+         "type": "import",
+         "category": "app",
+         "size": 10931895,
+         "url": "packages/go-music-dl-1.1.1.zip",
+         "icon": "icons/go-music-dl.png",
+         "tags": [
+            "音乐",
+            "服务"
+         ],
+         "md5": "c399daf9fdfae6275b2f025699091ced",
+         "changelog": "首录 1.1.1：市场上架重打包——包内 plugin.json 的 binaries.android 由 bin/music-dl-android 修正为纯文件名 music-dl-android（binaries 铁律：本体按 bin/<声明值> 落盘，带 bin/ 前缀拼成 bin/bin/ 死路径），二进制与上游分发包逐字节一致。",
+         "platforms": [
+            "android"
+         ]
+      },
+      {
+         "id": "OpenList",
+         "name": "OpenList 网盘服务",
+         "author": "OpenListTeam",
+         "desc": "OpenList 网盘挂载服务（Go 单文件二进制，runtime=binary 以子进程方式由宿主拉起）：监听 0.0.0.0:5244，数据目录 /storage/emulated/0/dsplayer/server/openlist；默认账号 admin / 密码 123456（首次登录后请及时修改）。启动后浏览器访问 http://<设备IP>:5244 管理与挂载网盘。上游 github.com/OpenListTeam/OpenList，本包内置国内 DNS 白名单修复 Android 环境 Go 程序 DNS 解析异常。",
+         "version": "1.3.0",
+         "type": "import",
+         "category": "app",
+         "size": 48252153,
+         "url": "packages/OpenList-1.3.0.zip",
+         "icon": "icons/openlist.png",
+         "tags": [
+            "网盘",
+            "服务"
+         ],
+         "md5": "6be482dbf1fb48f7a7146410e87d7805",
+         "changelog": "首录 1.3.0（打包版本号，引擎为 OpenList 官方 arm64 发行版）：二进制 144MB（zip 48.2MB，低于 50MB Release 阈值）走 packages/ 常规分发；env 注入 CNB2API_DNS 国内 DNS 白名单修复 Android 环境 DNS 解析异常。默认账号 admin/123456。",
          "platforms": [
             "android"
          ]

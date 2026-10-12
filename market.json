@@ -616,7 +616,28 @@
             "服务"
          ],
          "md5": "6be482dbf1fb48f7a7146410e87d7805",
-         "changelog": "首录 1.3.0（打包版本号，引擎为 OpenList 官方 arm64 发行版）：二进制 144MB（zip 48.2MB，低于 50MB Release 阈值）走 packages/ 常规分发；env 注入 CNB2API_DNS 国内 DNS 白名单修复 Android 环境 DNS 解析异常。默认账号 admin/123456。",
+         "changelog": "首录 1.3.0（打包版本号，引擎为 OpenList 官方 arm64 发行版）：二进制 144MB（zip 48.2MB，低于 50MB Release 阈值）走 packages/ 常规分发；env 注入 CNB2API_DNS 国内 DNS 白名单修复 Android 环境 Go 程序 DNS 解析异常。默认账号 admin/123456。",
+         "platforms": [
+            "android"
+         ]
+      },
+      {
+         "id": "frp",
+         "name": "frp 内网穿透客户端",
+         "author": "fatedier",
+         "desc": "fatedier/frp 客户端 frpc v0.71.0（Go 单文件二进制，runtime=binary 以子进程方式由宿主拉起）：把本机或局域网服务通过 frps 服务器穿透到公网访问，典型搭配 DsPlayer 内的 OpenList 网盘、洛雪同步等服务。内置 Android DNS 修复（net.DefaultResolver 公共 DNS 直连回退，juku-lite/guoapi 同款真机验证方案）与配置模板自动生成——首次启动在 /sdcard/dsplayer/server/frpc/frpc.toml 生成带注释模板，改完 serverAddr/auth.token 后热重载或重启服务；管理面板 http://127.0.0.1:7400（admin/admin，精简版：重载/状态），/healthz 兼作服务健康检查。上游 github.com/fatedier/frp。",
+         "version": "0.71.0",
+         "type": "import",
+         "category": "app",
+         "size": 3773335,
+         "url": "packages/frp-0.71.0.zip",
+         "icon": "icons/frp.png",
+         "tags": [
+            "网络",
+            "服务"
+         ],
+         "md5": "cfcc8011c112f4623d115c80fda828db",
+         "changelog": "首录 frpc v0.71.0：构建自官方 tag tarball（GOOS=linux/arm64 静态编译 + UPX 压至 3.77MB），注入 Android 适配——公共 DNS 直连修复插件环境系统 resolver 失效；配置文件缺失自动生成带注释 TOML 模板（含 webServer 管理面板与示例代理，健康检查依赖 webServer.port 7400）；管理面板为免 npm 构建的精简 HTML（重载/状态按钮），后端 /healthz 与 /api/* 接口全量可用。",
          "platforms": [
             "android"
          ]

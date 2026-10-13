@@ -68,6 +68,28 @@
          "category": "env"
       },
       {
+         "id": "proot",
+         "name": "Linux 沙盒运行时（PRoot）",
+         "author": "hjdhnx",
+         "desc": "Termux PRoot 5.1.107.92（arm64 四件套，免 root 用户态 Linux 沙盒）。安装后到「实验室 → Linux 沙盒」安装 Alpine/Ubuntu 完整环境，沙盒内自由装服务（apk add nodejs ffmpeg…）并注册为常驻服务。需本体 ≥ 0.9.10；仅 Android arm64 真机（部分模拟器内核禁 ptrace 不适用）。",
+         "version": "1.0.0",
+         "type": "import",
+         "size": 130666,
+         "url": "packages/proot-1.0.0.zip",
+         "icon": "icons/proot.png",
+         "tags": [
+            "运行时",
+            "沙盒"
+         ],
+         "changelog": "首发：Termux 官方池 pinned 二进制 proot 5.1.107.92（GPL-2.0+，以独立进程执行无许可传染），四件套 libproot_exec/loader + libtalloc/libandroid-shmem；配套本体实验室·Linux 沙盒模块（环境安装器/快速命令/服务注册）。",
+         "md5": "a1703e6d818c87f52bbfa2bd1907c9cc",
+         "platforms": [
+            "android"
+         ],
+         "minApp": "0.9.10",
+         "category": "env"
+      },
+      {
          "id": "nodejs-win",
          "name": "Node.js 运行时（Windows）",
          "author": "hjdhnx",

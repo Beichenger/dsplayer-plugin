@@ -321,14 +321,14 @@
          ],
          "md5": "6184819e6baea714b781cee8db467353",
          "category": "env",
-         "changelog": "首版（arm32 架构补位包，版本独立线）：so 取 qjs_ultra CI build-20261010-e2cfa2d 的 armeabi-v7a 产物（sha256 67e520f2…，含 1.0.5 的 qjs_update_stack_top 与随后的后台泵栈基线刷新）。需 DsPlayer 0.9.10+（32 位壳架构门 + qjs 值编组位宽兼容）。",
+         "changelog": "首版（arm32 架构补位包，版本独立线）：so 取 qjs_ultra CI build-20261010-e2cfa2d 的 armeabi-v7a 产物（sha256 67e520f2…，含 1.0.5 的 qjs_update_stack_top 与随后的后台泵栈基线刷新）。需 DsPlayer 0.9.11+（32 位壳架构门 + qjs 值编组位宽兼容）。",
          "abis": [
             "armeabi-v7a"
          ],
          "platforms": [
             "android"
          ],
-         "minApp": "0.9.10"
+         "minApp": "0.9.11"
       },
       {
          "id": "qjs-win",

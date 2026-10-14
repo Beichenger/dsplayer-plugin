@@ -2,14 +2,16 @@
 # -*- coding: utf-8 -*-
 """DsPlayer 官方插件市场对账闸门（MARKET-PLATFORM-ADAPT-DESIGN §七）。
 
-发版前必跑；退出码非零 = 拒绝发布。六项校验（R1-R6 + 完整性）：
+发版前必跑；退出码非零 = 拒绝发布。七项校验（R1-R6 + abis 词法 + 完整性）：
   1. market.json 可解析、条目 id 唯一、四要素（id/name/version/url）齐全
   2. 相对 url 指向的包存在于 packages/；packages/ 无孤儿文件（绝对 URL
      条目走 Release 分发，只查 md5 已声明，不查本地）
   3. 本地包文件 md5 == 索引声明 md5
   4. platforms 全量显式（R1）、恰好一词（R2）、词表内 android/win32（R3）
-  5. README 条目表：行数 == 条目数；逐行 id/版本/包名与 market.json 一致
-  6. 顶层 updatedAt 存在且 ISO8601 格式合法
+  5. abis 声名词法：缺省（未声明）= arm64-v8a；显式 [] = 不限；词表内
+     （MARKET-ABI-ADAPT-DESIGN §六，2026-10-14）
+  6. README 条目表：行数 == 条目数；逐行 id/版本/包名与 market.json 一致
+  7. 顶层 updatedAt 存在且 ISO8601 格式合法
 
 用法：python check_market.py   （在仓库根目录执行）
 """
@@ -25,6 +27,9 @@ MARKET = os.path.join(HERE, 'market.json')
 README = os.path.join(HERE, 'README.md')
 PKGS = os.path.join(HERE, 'packages')
 VALID_PLATFORMS = {'android', 'win32'}  # 预留 linux：加入词表时同步改
+# abis 词表（MARKET-ABI-ADAPT-DESIGN §六）：缺省（未声明）= ['arm64-v8a']；
+# 显式空数组 = 不限（纯资源形态）；多值允许（mpv 的 x86_64 模拟器例外）
+VALID_ABIS = {'arm64-v8a', 'armeabi-v7a', 'x86_64', 'x86'}
 REQUIRED_FIELDS = ('id', 'name', 'version', 'url')
 
 
@@ -180,7 +185,30 @@ def main():
     rpt.check('4. platforms 显式 / 二进制条目恰好一词 / 词表内（R1-R3）', ok,
               lines or [f'{len(plugins)} 条目全量显式；import/apk 单平台'])
 
-    # ---- 5. README 条目表逐行对账（R6）----
+    # ---- 5. abis 声名词法（MARKET-ABI-ADAPT-DESIGN §六，2026-10-14）----
+    # 缺省（未声明）= arm64-v8a（历史存量全是 arm64 构建，老条目零改动兼容）；
+    # 显式 [] = 不限（纯资源形态，如 agent）；多值允许（mpv 的 x86_64 例外）。
+    # 本段只做词法校验——语义判定在客户端（宿主进程 ABI ∈ abis）。
+    lines, ok = [], True
+    for e in plugins:
+        eid = str(e['id'])
+        if 'abis' not in e:
+            continue
+        ab = e.get('abis')
+        if not isinstance(ab, list):
+            lines.append(f'#{eid}：abis 必须是数组（缺省即 arm64-v8a，勿写标量）')
+            ok = False
+            continue
+        bad = [x for x in ab if x not in VALID_ABIS]
+        if bad:
+            lines.append(f'#{eid}：abis 词表外取值 {bad}'
+                         f'（{"、".join(sorted(VALID_ABIS))}）')
+            ok = False
+    declared = sum(1 for e in plugins if 'abis' in e)
+    rpt.check('5. abis 声名词法（缺省=arm64-v8a；空数组=不限；词表内）', ok,
+              lines or [f'{declared} 条目显式声明，其余缺省 arm64-v8a'])
+
+    # ---- 6. README 条目表逐行对账（R6）----
     rows = parse_readme_rows()
     lines, ok = [], True
     if len(rows) != len(plugins):
@@ -210,17 +238,17 @@ def main():
         if rpkg != url_base:
             lines.append(f'#{rid}：包名不符 README={rpkg} market.json={url_base}')
             ok = False
-    rpt.check('5. README 条目表逐行对账（行数/id/版本/包名）', ok,
+    rpt.check('6. README 条目表逐行对账（行数/id/版本/包名）', ok,
               lines or [f'{len(rows)} 行逐行一致（id/版本/包名）'])
 
-    # ---- 6. updatedAt 存在且格式合法 ----
+    # ---- 7. updatedAt 存在且格式合法 ----
     upd = str(data.get('updatedAt', '') or '')
     try:
         datetime.fromisoformat(upd.replace('Z', '+00:00'))
         ok6, line6 = True, f'updatedAt = {upd}'
     except ValueError:
         ok6, line6 = (upd != ''), f'updatedAt 非法：{upd!r}（期望 ISO8601，如 2026-10-09T09:54:39Z）'
-    rpt.check('6. 顶层 updatedAt 存在且 ISO8601 合法', ok6, [line6])
+    rpt.check('7. 顶层 updatedAt 存在且 ISO8601 合法', ok6, [line6])
 
     # ---- 总结 ----
     print(f'\n== 总结：{len(plugins)} 条目 · {len(local_urls)} 本地包 · '

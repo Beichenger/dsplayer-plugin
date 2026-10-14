@@ -2,7 +2,7 @@
    "logo": "icons/market.png",
    "name": "DsPlayer 官方插件市场",
    "desc": "官方维护的插件分发索引（docs/plugin/PLUGIN-MARKET-DESIGN.md §二 schema）",
-   "updatedAt": "2026-10-14",
+   "updatedAt": "2026-10-14T04:05:55Z",
    "plugins": [
       {
          "id": "mediaProxy",
@@ -233,6 +233,10 @@
          "md5": "24db35c6c48be264a7561c5b0d8c1695",
          "category": "env",
          "changelog": "v1.0.2：libmpv 重编入 DASH（MPD）demuxer —— 上游构建缺 libxml2 致 ff_dash_demuxer 未编入，DASH 源此前须降级 Exo；现 MPV 原生播放，真机首帧 39ms。内核版本 1.2.5 → 1.2.6。",
+         "abis": [
+            "arm64-v8a",
+            "x86_64"
+         ],
          "platforms": [
             "android"
          ]
@@ -295,9 +299,36 @@
          "md5": "3edbcac19014867f501168e4f267284a",
          "category": "env",
          "changelog": "qjs_update_stack_top：isolate 线程迁移假 stack overflow 根治（dr3 引擎 worker 化前提；顺带根治 dr2 偶发假爆栈）。需 DsPlayer 0.7.6+ 配合。",
+         "abis": [
+            "arm64-v8a"
+         ],
          "platforms": [
             "android"
          ]
+      },
+      {
+         "id": "qjs-arm32",
+         "name": "QJS 爬虫引擎（32 位设备）",
+         "author": "hjdhnx",
+         "desc": "本地 JS 爬虫源执行引擎的 32 位（armeabi-v7a）构建，供 32 位安卓设备/老电视使用——drpy2 与 drpy3 源统一由本插件执行；64 位设备请装「QJS 爬虫引擎」。与 64 位包符号级 ABI 契约一致（67 导出全对齐），宿主侧含 NaN-boxing 值编组兼容。",
+         "version": "1.0.0",
+         "type": "import",
+         "size": 2703741,
+         "url": "packages/qjs-arm32-1.0.0.apk",
+         "icon": "icons/qjs.png",
+         "tags": [
+            "引擎"
+         ],
+         "md5": "6184819e6baea714b781cee8db467353",
+         "category": "env",
+         "changelog": "首版（arm32 架构补位包，版本独立线）：so 取 qjs_ultra CI build-20261010-e2cfa2d 的 armeabi-v7a 产物（sha256 67e520f2…，含 1.0.5 的 qjs_update_stack_top 与随后的后台泵栈基线刷新）。需 DsPlayer 0.9.10+（32 位壳架构门 + qjs 值编组位宽兼容）。",
+         "abis": [
+            "armeabi-v7a"
+         ],
+         "platforms": [
+            "android"
+         ],
+         "minApp": "0.9.10"
       },
       {
          "id": "qjs-win",
@@ -336,6 +367,7 @@
          ],
          "md5": "b64f152c2b1e5ff4e4813555e149bf1f",
          "category": "env",
+         "abis": [],
          "platforms": [
             "android"
          ]

@@ -479,7 +479,8 @@
          "icon": "icons/epg-tool.png",
          "platforms": [
             "android"
-         ]
+         ],
+         "minApp": "0.9.11"
       },
       {
          "id": "demo-sources",

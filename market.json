@@ -2,7 +2,7 @@
    "logo": "icons/market.png",
    "name": "DsPlayer 官方插件市场",
    "desc": "官方维护的插件分发索引（docs/plugin/PLUGIN-MARKET-DESIGN.md §二 schema）",
-   "updatedAt": "2026-10-14T04:05:55Z",
+   "updatedAt": "2026-10-16T05:00:00Z",
    "plugins": [
       {
          "id": "mediaProxy",
@@ -457,6 +457,28 @@
          "platforms": [
             "android",
             "win32"
+         ]
+      },
+      {
+         "id": "epg-tool",
+         "name": "EPG 节目单服务",
+         "author": "taksssss / DsPlayer",
+         "desc": "自建 EPG 节目单服务（来源 github.com/taksssss/iptv-tool 裁剪版，GPL-2.0 原许可随包）：抓取 51zmt 全量节目单入本地 SQLite，提供 DIYP/XMLTV 查询接口（兼容 TVBox 生态 /index.php?ch={name}&date={date} 形态）。安装后自动创建「EPG 节目单服务」（需先装 php 运行时插件）并自动启动，直播页 设置 → EPG 设置 选「本机自建服务」即接入；数据 6 小时自动刷新，首次请求触发后台抓取约 1 分钟出数据。本地缓存不依赖外部站点实时可用性，适合追求稳定 EPG 的用户。Linux 沙盒/iOS 暂不支持。",
+         "version": "1.0.0",
+         "type": "server",
+         "category": "app",
+         "url": "packages/epg-tool-1.0.0.zip",
+         "size": 1460325,
+         "md5": "2bf1438c427dcde9677e377b2df6e33b",
+         "changelog": "首个版本：iptv-tool epg/ 核心裁剪（20MB→1.4MB；裁管理页/tinyfilemanager/phpliteadmin/Parsedown，保留 index/public/update/scraper/proxy/check + opencc），新增 router.php 引导层（建表/短路由/数据新鲜度自愈替代 crond 常驻循环），预置 51zmt 数据源；当贝 MAX1 真机全链验收（安装→服务自启→首抓 97 频道→DIYP 查询 35 档/日→直播页 EPG 显示）。",
+         "tags": [
+            "服务",
+            "直播",
+            "EPG"
+         ],
+         "icon": "icons/epg-tool.png",
+         "platforms": [
+            "android"
          ]
       },
       {
